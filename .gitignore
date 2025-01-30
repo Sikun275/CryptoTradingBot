@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 *.log
 config/config.json
+# to protect API
+config/.env
+.env
