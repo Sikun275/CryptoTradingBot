@@ -4,7 +4,7 @@ from coinbase.wallet.client import Client
 import ccxt
 import pandas as pd
 from src.utils.logger import logger
-
+import logging # for the API test, delete later
 
 #for the API key security
 
@@ -14,10 +14,19 @@ load_dotenv(dotenv_path="config/.env")
 # Retrieve API credentials securely
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
-PASSPHRASE = os.getenv("PASSPHRASE")
+
+print("API_KEY:", API_KEY)
+print("API_SECRET:", API_SECRET)
+
+
+# Enable debugging to capture full API response
+logging.basicConfig(level=logging.DEBUG)
+
+# Initialize Coinbase API client
+client = Client(API_KEY, API_SECRET)
 
 # Ensure the keys are loaded correctly
-if not API_KEY or not API_SECRET or not PASSPHRASE:
+if not API_KEY or not API_SECRET:
     raise ValueError("❌ Missing API credentials. Check config/.env file.")
 
 # Initialize Coinbase API client
@@ -35,11 +44,11 @@ except Exception as e:
 # 2. import the correct and updated library 
 
 class ExchangeAPI:
-    def __init__(self, api_key, api_secret, passphrase):
+    def __init__(self, api_key, api_secret):
         self.exchange = ccxt.coinbasepro({
             'apiKey': api_key,
             'secret': api_secret,
-            'password': passphrase,
+            
         })
         logger.info("Exchange API initialized.")
 

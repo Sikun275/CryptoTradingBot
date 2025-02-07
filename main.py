@@ -9,7 +9,6 @@ if __name__ == "__main__":
     bot = TradingBot(
         api_key=config.get('api_key'),
         api_secret=config.get('api_secret'),
-        passphrase=config.get('passphrase')
     )
     bot.run(
         symbol=config.get('symbol'),
