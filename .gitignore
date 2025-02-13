@@ -3,6 +3,8 @@ __pycache__/
 *.pyc
 *.log
 config/config.json
+config/cdp_api_key.json
+config/uuid.json
 # to protect API
 config/.env
 .env
